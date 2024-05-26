@@ -1,3 +1,4 @@
 service : {
   getBalance: (principal) -> (nat) query;
+  getSymbol: () -> (text) query;
 }

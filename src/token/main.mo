@@ -1,5 +1,6 @@
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
+import Debug "mo:base/Debug";
 
 actor Token {
     var owner : Principal = Principal.fromText("h2rzf-hxwpb-mw3pk-mclxk-ak7mk-jy74w-atkvl-fsclv-cczo7-a74sz-uqe");
@@ -16,5 +17,14 @@ actor Token {
         };
 
         return balance;
+    };
+
+    public query func getSymbol() : async Text {
+        return symbol;
+    };
+
+    public shared (msg) func payOut() : async Text {
+        Debug.print(debug_show (msg));
+        return "Success!";
     };
 };
