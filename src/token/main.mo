@@ -1,5 +1,20 @@
-actor {
-    public func greet(name : Text) : async Text {
-        return "Hello, " # name # "!";
+import Principal "mo:base/Principal";
+import HashMap "mo:base/HashMap";
+
+actor Token {
+    var owner : Principal = Principal.fromText("h2rzf-hxwpb-mw3pk-mclxk-ak7mk-jy74w-atkvl-fsclv-cczo7-a74sz-uqe");
+    var totalSupply : Nat = 1000000;
+    var symbol : Text = "FUIYO";
+
+    var balances = HashMap.HashMap<Principal, Nat>(1, Principal.equal, Principal.hash);
+    balances.put(owner, totalSupply);
+
+    public query func getBalance(who : Principal) : async Nat {
+        let balance : Nat = switch (balances.get(who)) {
+            case null 0;
+            case (?result) result;
+        };
+
+        return balance;
     };
 };
